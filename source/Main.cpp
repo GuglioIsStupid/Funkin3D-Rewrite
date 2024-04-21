@@ -11,14 +11,10 @@
 #define SCREEN_WIDTH_BOTTOM 320
 #define SCREEN_HEIGHT_BOTTOM 240
 
+#include "gf.hpp"
+
 int main(int argc, char* argv[]) {
 	srand(time(NULL));
-
-	// FPS stuff
-	float FPS = 0;
-	float delta = 0;
-	float lastTime = 0;
-	float currentTime = 0;
 
 	romfsInit();
 	gfxInitDefault();
@@ -36,6 +32,13 @@ int main(int argc, char* argv[]) {
 	// c2d text stuff
 	C2D_TextBuf dynamicBuffer = C2D_TextBufNew(4096);
 
+	// gf stuff
+	GF gf = GF(50, 50);
+
+	int frames = 0;
+	float previousTime = 0;
+	float currentTime = 0;
+	double delta = 0;
 
 	while (aptMainLoop()) {
 		hidScanInput();
@@ -52,6 +55,9 @@ int main(int argc, char* argv[]) {
 			C2D_DrawRectSolid(50, 50, 0, 50, 50, C2D_Color32(0x00, 0x00, 0xFF, 0xFF));
 			C2D_DrawRectSolid(150, 50, 0, 50, 50, C2D_Color32(0x00, 0xFF, 0x00, 0xFF));
 			C2D_DrawRectSolid(250, 50, 0, 50, 50, C2D_Color32(0xFF, 0x00, 0x00, 0xFF));
+
+			gf.update();
+			gf.draw();
 
 		C2D_SceneBegin(bottom);
 			C2D_TextBufClear(dynamicBuffer);
