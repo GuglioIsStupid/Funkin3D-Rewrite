@@ -14,5 +14,6 @@ GF::~GF() {
 void GF::draw() { 
     /* C2D_SpriteMove(&this->sprite, this->x, this->y);
     C2D_SpriteScale(&this->sprite, this->scaleX, this->scaleY); */
-    C2D_DrawSprite(&this->sprite);
+    // 163x149
+    C2D_DrawSpriteFromFramePos(&this->sprite, 0, 0, 163, 149);
 }

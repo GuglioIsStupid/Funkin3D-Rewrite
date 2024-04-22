@@ -38,7 +38,7 @@ void Character::draw() {
     /* C2D_DrawSprite(&this->sprite, this->x, this->y, 0, this->scaleX, this->scaleY, 1); */
     /* C2D_SpriteMove(&this->sprite, this->x, this->y);
     C2D_SpriteScale(&this->sprite, this->scaleX, this->scaleY); */
-    C2D_DrawSprite(&this->sprite);
+    C2D_DrawSpriteFromFramePos(&this->sprite, 0, 0, 75, 75);
 }
 
 void Character::addAnimation(std::string name, int start, int end, double speed) {
@@ -58,7 +58,7 @@ void Character::update(double delta) {
             if (this->frame > std::get<2>(this->currentAnimation)) {
                 this->frame = std::get<1>(this->currentAnimation);
             }
-            C2D_SpriteFromSheet(&this->sprite, this->spriteSheet, this->frame);
+            /* C2D_SpriteFromSheet(&this->sprite, this->spriteSheet, this->frame); */
         }
     }
 }
