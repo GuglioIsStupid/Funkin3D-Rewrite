@@ -15,11 +15,8 @@ Character::Character(std::string name, int x, int y) {
     this->animations = std::vector<std::tuple<std::string, int, int, double>>();
     this->currentAnimation = std::tuple<std::string, int, int, double>("", 0, 0, 0);
 
-    this->frames = std::vector<int>(
-        { // IDLE
-
-        }
-    );;
+    // frame offsetX and offsetY
+    this->frames = std::vector<std::tuple<float, float>>();
 
     this->playing = false;
 
@@ -55,10 +52,11 @@ void Character::update(double delta) {
         if (this->frameTime >= std::get<3>(this->currentAnimation)) {
             this->frameTime = 0;
             this->frame += 1;
-            if (this->frame > std::get<2>(this->currentAnimation)) {
+            if (this->frame > std::get<2>(this->currentAnimation)-1) {
                 this->frame = std::get<1>(this->currentAnimation);
             }
-            /* C2D_SpriteFromSheet(&this->sprite, this->spriteSheet, this->frame); */
+            C2D_SpriteFromSheet(&this->sprite, this->spriteSheet, this->frame);
+            C2D_SpriteMove(&this->sprite, this->x + std::get<0>(this->frames[this->frame]), this->y + std::get<1>(this->frames[this->frame]));
         }
     }
 }

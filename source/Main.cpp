@@ -56,7 +56,8 @@ int main(int argc, char* argv[]) {
 			C2D_DrawRectSolid(150, 50, 0, 50, 50, C2D_Color32(0x00, 0xFF, 0x00, 0xFF));
 			C2D_DrawRectSolid(250, 50, 0, 50, 50, C2D_Color32(0xFF, 0x00, 0x00, 0xFF));
 
-			gf.update(1);
+			// 60fps
+			gf.update(0.1f);
 			gf.draw();
 
 		C2D_SceneBegin(bottom);

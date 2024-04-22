@@ -25,7 +25,7 @@ public:
     std::vector<std::tuple<std::string, int, int, double>> animations;
     std::tuple<std::string, int, int, double> currentAnimation;
     // list of frame indexs
-    std::vector<int> frames;
+    std::vector<std::tuple<float, float>> frames;
     
     std::string filePath;
     C2D_SpriteSheet spriteSheet;
